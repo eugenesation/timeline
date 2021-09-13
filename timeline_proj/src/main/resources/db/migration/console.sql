@@ -32,7 +32,7 @@ create table posts
 (
     id      bigserial primary key,
     content varchar(255) not null,
-    user_id bigint       not null references user_table (id) on update cascade on delete cascade
+    user_id bigint       not null references user_table (id) on delete cascade on update cascade
 );
 
 insert into role_table(name)

@@ -1,5 +1,6 @@
 package ua.com.nix.timeline_proj.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import ua.com.nix.timeline_proj.service.impl.UserServiceImpl;
 
 import javax.validation.Valid;
 
+@Slf4j
 @RestController
 public class AuthController {
 
@@ -31,11 +33,13 @@ public class AuthController {
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public String registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) {
+        log.info("Starting registration user...");
         User u = new User();
         u.setPassword(registrationRequest.getPassword());
         u.setLogin(registrationRequest.getLogin());
         userServiceImpl.saveUser(u);
-        return "OK";
+        log.info("Ending registration user...");
+        return "User registered";
     }
 
     @PostMapping("/auth")
@@ -43,6 +47,17 @@ public class AuthController {
         User user = userServiceImpl.findByLoginAndPassword(request.getLogin(), request.getPassword());
         String token = jwtProvider.generateToken(user.getLogin());
         return new AuthResponse(token);
+    }
+
+    @PostMapping("/register/admin")
+    public String registerAdmin(@RequestBody @Valid RegistrationRequest registrationRequest) {
+        log.info("Starting registration admin...");
+        User admin = new User();
+        admin.setPassword(registrationRequest.getPassword());
+        admin.setLogin(registrationRequest.getLogin());
+        userServiceImpl.saveAdmin(admin);
+        log.info("Ending registration admin...");
+        return "Admin registered";
     }
 
 }

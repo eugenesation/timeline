@@ -24,8 +24,4 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
 
-//    @OneToMany
-//    @JoinColumn(name = "post_id")
-//    private List<Post> posts;
-
 }

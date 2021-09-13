@@ -21,12 +21,4 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Post(String content) {
-        this.content = content;
-    }
-
-    public Post(String content, User user) {
-        this.content = content;
-        this.user = user;
-    }
 }

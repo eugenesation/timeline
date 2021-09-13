@@ -28,23 +28,27 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post getById(Long id) {
+        if (id != null) {
+            return postRepository.getById(id);
+        }
         return null;
     }
 
     @Override
-    @Transactional
     public Post save(Post post) {
-        post.setContent(post.getContent());
-            return postRepository.save(post);
+        return postRepository.save(post);
     }
 
     @Override
-    public void delete(Long id, Authentication authentication) {
-
+    public void delete(Long id) {
+        if (id != null) {
+            postRepository.deleteById(id);
+        }
     }
 
     @Override
     public List<Post> getAll() {
         return postRepository.findAll();
     }
+
 }

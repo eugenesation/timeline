@@ -12,7 +12,7 @@ public interface PostService {
 
     Post save(Post post);
 
-    void delete(Long id, Authentication authentication);
+    void delete(Long id);
 
     List<Post> getAll();
 

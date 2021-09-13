@@ -48,6 +48,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User saveAdmin(User user) {
+        Role adminRole = roleRepository.findByName("ROLE_ADMIN");
+        user.setRole(adminRole);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
+    }
+
+    @Override
     public User getUserById(Long id) {
         return userRepository.getById(id);
     }
