@@ -1,0 +1,8 @@
+language: java
+jdk:
+  - openjdk16
+
+script: mvn clean install
+
+notifications:
+  email: eugenesmirnov03@gmail.com

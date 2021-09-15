@@ -31,8 +31,7 @@ create unique index user_table_login_uindex
 create table posts
 (
     id      bigserial primary key,
-    content varchar(255) not null,
-    user_id bigint       not null references user_table (id) on delete cascade on update cascade
+    content varchar(255) not null
 );
 
 insert into role_table(name)

@@ -40,7 +40,6 @@ public class PostController {
     }
 
     @DeleteMapping("/delete/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public String delete(@PathVariable Long id) {
         postServiceImpl.delete(id);
         return "DELETED";

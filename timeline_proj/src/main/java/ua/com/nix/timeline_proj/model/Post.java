@@ -17,8 +17,20 @@ public class Post {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
+    public Post() {
+    }
+
+    public Post(Long id) {
+        this.id = id;
+    }
+
+    public Post(Long id, String content) {
+        this.id = id;
+        this.content = content;
+    }
+
+    //    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "user_id")
+//    private User user;
 
 }

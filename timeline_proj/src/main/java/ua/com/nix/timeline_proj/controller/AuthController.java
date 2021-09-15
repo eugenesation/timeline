@@ -31,7 +31,6 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    @ResponseStatus(HttpStatus.CREATED)
     public String registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) {
         log.info("Starting registration user...");
         User u = new User();

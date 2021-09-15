@@ -3,6 +3,7 @@ package ua.com.nix.timeline_proj.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import ua.com.nix.timeline_proj.controller.request.AuthRequest;
@@ -21,12 +22,16 @@ import java.util.List;
 public class UserController {
 
     private final UserRepository userRepository;
+    private final UserServiceImpl userServiceImpl;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserController(UserRepository userRepository
-    ) {
+    public UserController(UserRepository userRepository, UserServiceImpl userServiceImpl, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.userServiceImpl = userServiceImpl;
+        this.passwordEncoder = passwordEncoder;
     }
+
 
     @GetMapping("/get/admins")
     public List<User> getAdmins() {
@@ -42,19 +47,23 @@ public class UserController {
     @DeleteMapping("/user/delete/{id}")
     public String deleteUserById(@PathVariable Long id) {
         log.info("Starting delete...");
+
         userRepository.deleteUserById(id);
+
         log.info("Ending delete...");
         return "DELETED";
     }
 
     @PutMapping("/user/update/{id}")
-    public String updateUserLoginAndPassword(@RequestBody AuthRequest authRequest, @PathVariable Long id) {
+    public String updateUserLoginAndPasswordById(@RequestBody AuthRequest authRequest, @PathVariable Long id) {
         log.info("Starting update user...");
-        User user = userRepository.getById(id);
+
+        User user = userServiceImpl.getUserById(id);
         user.setLogin(authRequest.getLogin());
-        user.setPassword(authRequest.getPassword());
-        userRepository.save(user);
+        user.setPassword(passwordEncoder.encode(authRequest.getPassword()));
+        userServiceImpl.saveUser(user);
         user.setId(id);
+
         log.info("Ending update user...");
         return "UPDATED";
     }

@@ -18,12 +18,10 @@ import java.util.List;
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
-    private final UserRepository userRepository;
 
     @Autowired
-    public PostServiceImpl(PostRepository postRepository, UserRepository userRepository) {
+    public PostServiceImpl(PostRepository postRepository) {
         this.postRepository = postRepository;
-        this.userRepository = userRepository;
     }
 
     @Override
@@ -36,7 +34,10 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post save(Post post) {
-        return postRepository.save(post);
+        if (post != null) {
+            return postRepository.save(post);
+        }
+        return null;
     }
 
     @Override
