@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -51,30 +54,24 @@ class PostControllerTest {
 
     @Test
     void getAllPosts() throws Exception {
-        when(postRepository.findAll()).thenReturn(Arrays.asList(
-                new Post(1L, "Rap"),
-                new Post(2L, "Content")
-        ));
-
-        mockMvc.perform(get("/get"));
+        Post post = new Post(1L, "text");
+        postRepository.save(post);
+        List<Post> posts = postRepository.findAll();
+        posts.add(post);
+        mockMvc.perform(get("/get"))
+                .andExpect(status().isNotFound());
     }
 
-//    @Test
-//    void delete() throws Exception {
-//        List<Post> posts = new ArrayList<>();
-//        Post post = new Post(1L);
-//        posts.add(post);
-//
-//        postService.delete(post.getId());
-//
-//        mockMvc.perform(MockMvcRequestBuilders.delete("/content/delete/{id}"))
-//                .andExpect(status().isNotFound());
-//
-//        Assertions.assertFalse(post.getId() == 1);
-//
-//
-//
-//    }
+    @Test
+    void delete() throws Exception {
+        Post post = new Post(1L, "text");
+        postRepository.save(post);
+
+
+
+
+
+    }
 
     @Test
     void updatePostById() {
