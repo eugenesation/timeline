@@ -24,11 +24,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User saveUser(User user) {
+    public void saveUser(User user) {
         Role userRole = roleRepository.findByName("ROLE_USER");
         user.setRole(userRole);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 
     @Override
@@ -48,11 +48,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User saveAdmin(User user) {
+    public void saveAdmin(User user) {
         Role adminRole = roleRepository.findByName("ROLE_ADMIN");
         user.setRole(adminRole);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 
     @Override

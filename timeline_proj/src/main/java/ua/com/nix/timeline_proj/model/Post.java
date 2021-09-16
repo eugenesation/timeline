@@ -3,7 +3,6 @@ package ua.com.nix.timeline_proj.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.*;
 
 @Entity
 @Table(name = "posts")
@@ -20,17 +19,9 @@ public class Post {
     public Post() {
     }
 
-    public Post(Long id) {
-        this.id = id;
-    }
-
     public Post(Long id, String content) {
         this.id = id;
         this.content = content;
     }
-
-    //    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "user_id")
-//    private User user;
 
 }

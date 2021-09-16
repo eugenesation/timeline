@@ -2,7 +2,6 @@ package ua.com.nix.timeline_proj.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ua.com.nix.timeline_proj.controller.request.PostRequest;
 import ua.com.nix.timeline_proj.model.Post;

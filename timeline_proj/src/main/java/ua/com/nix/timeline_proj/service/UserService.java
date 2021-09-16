@@ -4,7 +4,7 @@ import ua.com.nix.timeline_proj.model.User;
 
 public interface UserService {
 
-    User saveUser(User user);
+    void saveUser(User user);
 
     User findByLogin(String login);
 
@@ -12,6 +12,6 @@ public interface UserService {
 
     User getUserById(Long id);
 
-    User saveAdmin(User user);
+    void saveAdmin(User user);
 
 }

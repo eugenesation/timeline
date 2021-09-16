@@ -2,19 +2,14 @@ package ua.com.nix.timeline_proj.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import ua.com.nix.timeline_proj.controller.request.AuthRequest;
-import ua.com.nix.timeline_proj.model.Role;
 import ua.com.nix.timeline_proj.model.User;
-import ua.com.nix.timeline_proj.repository.RoleRepository;
 import ua.com.nix.timeline_proj.repository.UserRepository;
-import ua.com.nix.timeline_proj.service.UserService;
 import ua.com.nix.timeline_proj.service.impl.UserServiceImpl;
 
-import java.net.http.HttpResponse;
 import java.util.List;
 
 @RestController
