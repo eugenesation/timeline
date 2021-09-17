@@ -21,14 +21,6 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post getById(Long id) {
-        if (id != null) {
-            return postRepository.getById(id);
-        }
-        return null;
-    }
-
-    @Override
     public void save(Post post) {
         if (post != null) {
             postRepository.save(post);
