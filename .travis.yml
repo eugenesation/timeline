@@ -2,6 +2,18 @@ language: java
 jdk:
   - openjdk16
 
+sudo: enabled
+
+addons:
+  postgresql: "9.5" // change "9.5" for your postgres specific version
+
+before_script:
+  - psql -c "create database aries;" -U postgres // your database name
+  - sudo -u postgres psql -c "ALTER ROLE postgres WITH password '1111'" // if your password is different from 'postgres` use that one here
+
+services:
+  - postgresql
+
 script: ./mvnw clean install
 
 notifications:
