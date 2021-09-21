@@ -49,16 +49,16 @@ class PostControllerTest {
                 .andExpect(status().isNotFound());
     }
 
-    @Test
-    void delete() {
-        Post post = new Post(1L, "text");
-        postRepository.save(post);
-
-
-
-
-
-    }
+//    @Test
+//    void delete() {
+//        Post post = new Post(1L, "text");
+//        postRepository.save(post);
+//
+//
+//
+//
+//
+//    }
 
     @Test
     void updatePostById() {

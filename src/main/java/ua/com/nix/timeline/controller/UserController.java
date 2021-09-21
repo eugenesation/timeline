@@ -38,6 +38,11 @@ public class UserController {
         return userRepository.findAll();
     }
 
+    @GetMapping("/get/user")
+    public String getUser() {
+        return "Hi user!";
+    }
+
     @Transactional
     @DeleteMapping("/user/delete/{id}")
     public String deleteUserById(@PathVariable Long id) {
