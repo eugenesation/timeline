@@ -38,21 +38,3 @@ insert into role_table(name)
 values ('ROLE_ADMIN');
 insert into role_table(name)
 values ('ROLE_USER');
-
--- create table users
--- (
---     user_id  bigserial primary key,
---     login    varchar(50)                   not null unique,
---     password varchar(40)                   not null,
---     admin    boolean
---         constraint def_admin default false not null
--- );
---
-
-
--- create table likes
--- (
---     user_id bigint not null references users (user_id) on update cascade on delete cascade,
---     post_id bigint not null references posts (post_id) on update cascade on delete cascade,
---     constraint pk_like primary key (user_id, post_id)
--- )
