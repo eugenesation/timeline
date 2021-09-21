@@ -3,7 +3,7 @@ jdk:
   - openjdk16
 
 script:
-  mvn clean install
+  - mvn clean install
 
 notifications:
   email: eugenesmirnov03@gmail.com
