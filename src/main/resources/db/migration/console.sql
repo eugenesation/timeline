@@ -30,7 +30,7 @@ create unique index user_table_login_uindex
 
 create table posts
 (
-    id      bigserial primary key,
+    id      bigserial primary key not null,
     content varchar(255) not null
 );
 
